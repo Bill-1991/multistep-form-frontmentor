@@ -74,7 +74,7 @@
   #allsummary #but{
     display: flex;
     width: 80%;
-    align-items: end;
+    align-items: flex-end;
     
   }
 
@@ -218,7 +218,7 @@
   height: 100%
 }
 
-#allinfo #but{justify-content: end;}
+#allinfo #but{justify-content: flex-end;}
 
 #allplan #but,
 #alladdons #but,
