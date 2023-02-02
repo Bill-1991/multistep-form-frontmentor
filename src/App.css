@@ -1,38 +1,414 @@
-.App {
-  text-align: center;
+#root{
+  background-color: hsl(229, 24%, 87%);
+  width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.multiline-form{
+  width: 60%;
+  min-height: 80%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 35% 60% !important;
+  gap: 5%;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: hsl(0, 0%, 100%);
 }
 
-.App-link {
-  color: #61dafb;
+.navdesk{
+  width: 100%;
+  height: 80vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.navdesk p{
+  font-size: 10px;
+  color: hsl(231, 11%, 63%)
+}
+
+.navdesk .choices{
+  width: 100%;
+  height: 60%;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  align-items: center;
+  justify-content: start;
+  margin-left: 5%
+}
+
+.navdesk  #choice-1,
+.navdesk #choice-2,
+.navdesk #choice-3,
+.navdesk #choice-4{
+  display: flex;
+  gap: 5%
+}
+
+.navdesk .choices #steps{
+  display: grid;
+}
+
+.navdesk .choices button{ 
+  align-self: center !important;
+  border-color: white !important;
+}
+
+.navdesk h1{
+  font-size: 15px;
+  color: hsl(0, 0%, 100%)
+}
+
+  #allinfo,
+  #allplan,
+  #alladdon,
+  #allsummary{
+    display: grid;
+    grid-template-rows: 80% 20%;
+    align-self: start !important;
+    width: 100%;
+    height: 80vh;
   }
-  to {
-    transform: rotate(360deg);
+
+  #allinfo #but,
+  #allplan #but,
+  #alladdon #but, 
+  #allsummary #but{
+    display: flex;
+    width: 80%;
+    align-items: end;
+    
+  }
+
+  #allinfo #but button,
+  #allplan #but button,
+  #alladdon #but button, 
+  #allsummary #but button{
+     height: 30px
+  }
+
+#info,
+#plan,
+#addons,
+#summary{
+  align-self: start !important;
+  width: 80%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 15% 80%;
+  gap: 5%
+}
+
+#info .form {
+  display: grid;
+  grid-template-rows: repeat(3, 30%);
+  width: 98%
+}
+
+#info button{
+  color: white;
+  justify-self: flex-end !important;
+}
+
+#info .form label{
+  align-self: end !important;
+  font-size: 15px;
+}
+
+#info .form input{
+  height: 40px;
+}
+
+#info #top,
+#plan #top,
+#addons #top,
+#summary #top{
+  display: grid;
+  grid-template-rows: 60% 40%;
+}
+
+#info #top h1,
+#plan #top h1,
+#addons #top h1,
+#summary #top h1{
+  font-size: 30px;
+}
+
+#info #top p,
+#plan #top p,
+#addons #top p,
+#summary #top p{
+  font-size: 15px;
+  align-self: start;
+}
+
+#plan #allplans{
+   width: 100%;
+   display: grid;
+   height: 80%;
+   grid-template-rows: 90% 10%;
+  
+}
+
+#plan #allplans #buttons{
+  display: grid;
+  grid-template-columns: repeat(3,33%);
+  gap: 1%;
+  justify-content: start;
+  align-items: center;
+}
+
+#buttons #arcade,
+#buttons #advanced,
+#buttons #pro{
+  display: grid;
+  grid-template-rows: 30% 70%;
+  justify-content: start;
+}
+
+#plan #allplans #buttons button{
+  height: fit-content !important
+}
+
+#addons #alladdons{
+  height: 100%;
+  display: grid;
+  grid-template-rows: repeat(3,30);
+  gap: 3.3%
+}
+
+#addons #alladdons #outeronline,
+#addons #alladdons #outerstorage,
+#addons #alladdons #outercustomize{
+  height: 100%;
+  width: 100%;
+  border-radius: 10%;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#addons #alladdons .online,
+#addons #alladdons .storage,
+#addons #alladdons .customize{
+  height: 98%;
+  width: 99%;
+  display:grid;
+  grid-template-columns: 10% 70% 20%;
+  align-items: center;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 10%;
+}
+
+#summary #lastplan{
+  height: 80%;
+  display: grid;
+  grid-template-rows: 29% 1% 50% 20%;
+  align-items: center;
+}
+
+#summary #finalplan{
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+#summary #lastplan #total{
+  background-color: hsl(0, 0%, 100%);
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 100%
+}
+
+#allinfo #but{justify-content: end;}
+
+#allplan #but,
+#alladdons #but,
+#allsummary #but{
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+#thanks{
+  width: 80%;
+  justify-self: center;
+  border-radius: 10%;
+  align-items: center;
+  text-align: center;
+  background-color: hsl(0, 0%, 100%);
+  position: relative;
+  top: -25%;
+  height: 100%;
+}
+
+@media only screen and (max-width: 576px) {
+  
+  .multine-form-mob{
+    width: 100%;
+    height: 100vh;
+    display: grid !important;
+    grid-template-rows: 30% 70% !important;
+    background-color: lightblue;
+    align-items: start;
+    justify-content: center;
+  }
+
+  .navmob{
+    width: 100%;
+    height: 30vh;
+  }
+
+  .navmob .choices{
+    width: 100%;
+    height: 50%;
+    display: flex !important;
+    gap: 3%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navmob .choices #steps{
+    display: none !important
+  }
+
+  #info,
+  #plan,
+  #addons,
+  #summary{
+    width: 90%;
+    justify-self: center;
+    display: grid;
+    grid-template-rows: 30% 70%;
+    background-color: hsl(0, 0%, 100%);
+    border-radius: 5%;
+    height: fit-content
+  }
+  
+  #info .form,
+  #info #top,
+  #plan .allplans,
+  #plan #top,
+  #addons #alladdons,
+  #addons #top,
+  #summary .lastplan,
+  #summary #top{
+    width: 90%;
+    justify-self: center;
+  }
+
+  #allinfo,
+  #allplan,
+  #alladdon,
+  #allsummary{
+    position: relative;
+    top: -25%;
+  }
+
+  #plan #allplans{
+    width: 90%;
+    height: fit-content;
+    grid-template-rows: 80% 15%;
+    gap:5%;
+    align-self: center;
+    justify-self: center;
+  }
+
+  #plan #monoryear{
+    position: relative;
+    bottom: 5%;
+    height: 35px;
+    align-self: flex-end;
+  }
+
+  #plan,
+  #addons{
+    align-items: start;
+    height: fit-content;
+    grid-template-rows: 20% 75%;
+    gap: 5%
+  }
+
+  #addons #alladdons{
+    max-height: 80%;
+    margin-top: 10%;
+  }
+
+  #addons #alladdons .online,
+  #addons #alladdons .storage,
+  #addons #alladdons .customize{
+    max-height: fit-content;
+    
+  }
+
+  #addons #top,
+  #plan #top{
+    grid-template-rows: 30% 20%;
+  }
+
+  #summary{
+    grid-template-rows: 20% 80%;
+  }
+
+  #plan #allplans #mobbuttons{
+    width: 100%;
+    display: grid;
+    height: fit-content;
+    grid-template-rows: repeat(3, 33%);
+    align-self: start;
+  }
+
+  #plan #allplans #mobbuttons button{
+    border-radius: 10%;
+  }
+
+  #plan #arcade,
+  #plan #advanced,
+  #plan #pro{
+    display: grid;
+    height: 100%;
+    grid-template-columns: 30% 70%;
+    align-items: center;
+    justify-content: start;
+  }
+
+  
+
+  #summary #lastplan{
+    height: fit-content;
+    width: 90%;
+    grid-template-rows: 29% 1% 50% 20%;
+    justify-self: center;
+  }
+
+  #summary #total{
+    height: fit-content
+  }
+
+  #allinfo #mobbut,
+  #allplan #mobbut,
+  #alladdon #mobbut,
+  #allsummary #mobbut{
+    width: 100%;
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: aliceblue;
+  }
+
+  #mobbut{
+    height: 100%;
+    position: absolute;
+    right: 0
+  }
+
+  #mobbut #next{
+    height: 100%;
+    position: inherit;
+    right: 3%
+  }
+
+  #mobbut #back{
+    height: 100%;
+    position: inherit;
+    left: 3%
   }
 }
