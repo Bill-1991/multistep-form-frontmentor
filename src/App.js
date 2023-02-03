@@ -65,6 +65,11 @@ function App() {
   setNumber(e.target.value)
 }
 
+const handleChangePlan = () => {
+  setPlan(true)
+  setSummary(false)
+}
+
   const handleConfirm = () => {
     setConfirm(true)
     setInfo(false)
@@ -289,7 +294,7 @@ function App() {
     <div className={size}>
       {onEmptyPlan === false ? undefined : <p id="empty">{emptyPlan}</p>}
       <NavDesktop windowSize={windowSize} info={info} plan={plan} addOns={addOns} summary={summary} handleAll={handleAll} />
-      {info === true ? <Info name={name} handleName={handleName} email={email} handleEmail={handleEmail} number={number} handleNumber={handleNumber} windowSize={windowSize} handleNext={handleNext}/> : plan === true ? <Plan handleBack={handleBack} windowSize={windowSize} handleNext={handleNext} month={month} handleMonth={handleMonth} plans={plans} finalPlan={finalPlan} handlePlans={handlePlans}/> : addOns === true ? <AddOns finalAddOns={finalAddOns} handleBack={handleBack} windowSize={windowSize} handleNext={handleNext} month={month} addOnsPlan={addOnsPlan} handleAddOnsPlan={handleAddOnsPlan} /> : summary === true ? <Summary handleBack={handleBack} windowSize={windowSize} handleConfirm={handleConfirm} month={month} finalPlan={finalPlan} finalAddOns={finalAddOns} /> : confirm === true ? <Thanks img={img}/> : undefined}  
+      {info === true ? <Info name={name} handleName={handleName} email={email} handleEmail={handleEmail} number={number} handleNumber={handleNumber} windowSize={windowSize} handleNext={handleNext}/> : plan === true ? <Plan handleBack={handleBack} windowSize={windowSize} handleNext={handleNext} month={month} handleMonth={handleMonth} plans={plans} finalPlan={finalPlan} handlePlans={handlePlans}/> : addOns === true ? <AddOns finalAddOns={finalAddOns} handleBack={handleBack} windowSize={windowSize} handleNext={handleNext} month={month} addOnsPlan={addOnsPlan} handleAddOnsPlan={handleAddOnsPlan} /> : summary === true ? <Summary handleBack={handleBack} windowSize={windowSize} handleConfirm={handleConfirm} month={month} finalPlan={finalPlan} handleChangePlan={handleChangePlan} finalAddOns={finalAddOns} /> : confirm === true ? <Thanks img={img}/> : undefined}  
     </div>
   );
 }

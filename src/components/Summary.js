@@ -1,6 +1,6 @@
 import "../App.css"
 
-const Summary = ({month, finalPlan, finalAddOns, handleConfirm, windowSize, handleBack}) => {
+const Summary = ({month, finalPlan, finalAddOns, handleConfirm, windowSize, handleBack, handleChangePlan}) => {
     let totalAddOnsPrice = 0
     for(let i in finalAddOns) {
         totalAddOnsPrice += finalAddOns[i].price
@@ -19,7 +19,7 @@ const Summary = ({month, finalPlan, finalAddOns, handleConfirm, windowSize, hand
                 <div id="finalplan">
                   <div >
                     <h2 style={{position: "relative", left: "5%", fontSize: "15px"}}>{`${finalPlan.title} (${month === true ? "monthly" : "yearly"})`}</h2>
-                    <p style={{position: "relative", left: "5%",textDecoration: "underline", color: "gray", fontSize: "10px"}}>change</p>
+                    <button onClick={handleChangePlan} style={{border: "none", backgroundColor: "rgba(0,0,0,0)"}}><p style={{position: "relative", left: "5%",textDecoration: "underline", color: "gray", fontSize: "10px"}}>change</p></button>
                   </div>
                   <p style={{position: "relative", right: "5%", color: "black", justifySelf:"end", alignSelf: 'center'}}>{`${finalPlan.price}$/${month === true ? "mo" : "yr"}`}</p>
                 </div>
