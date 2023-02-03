@@ -14,6 +14,9 @@ import Thanks from './components/Thanks';
 
 function App() {
   
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [number, setNumber] = useState("")
   const [info, setInfo] = useState(true)
   const [plan, setPlan] = useState(false)
   const [addOns, setAddOns] = useState(false)
@@ -23,9 +26,9 @@ function App() {
   const [windowSize, setWindowSize] = useState([
     window.innerWidth,
   ]);
-  const [plans, setPlans] = useState([{id: "arcade", type: false, month: month, img: arcade, title: "Arcade", monthlyPrice: 9, yearlyPrice: 90},
-                                     {id: "advanced", type: false, month: month, img: advanced, title: "Advanced", monthlyPrice: 12, yearlyPrice: 120},
-                                     {id: "pro", type: false, month: month, img: pro, title: "Pro", monthlyPrice: 15, yearlyPrice: 150}])
+  const [plans, setPlans] = useState([{id: "Arcade", type: false, month: month, img: arcade, title: "Arcade", monthlyPrice: 9, yearlyPrice: 90},
+                                     {id: "Advanced", type: false, month: month, img: advanced, title: "Advanced", monthlyPrice: 12, yearlyPrice: 120},
+                                     {id: "Pro", type: false, month: month, img: pro, title: "Pro", monthlyPrice: 15, yearlyPrice: 150}])
   
   const [addOnsPlan, setAddOnsPlan] = useState([{id: "online", type: false, title: "Online service", monthlyPrice: 1, yearlyPrice: 10},
                                                 {id: "storage", type: false, title: "Larger storage", monthlyPrice: 2, yearlyPrice: 20},
@@ -33,6 +36,8 @@ function App() {
   
   const [finalPlan, setFinalPlan] = useState({})
   const [finalAddOns, setFinalAddOns] = useState([])
+  const [onEmptyPlan, setOnEmptyPlan] =useState(false)
+  const [emptyPlan, setEmptyPlan] = useState("")
   
   useEffect(() => {
     const handleWindowResize = () => {
@@ -47,7 +52,19 @@ function App() {
   });
   
   const size = windowSize >= 577 ? "multiline-form" : "multine-form-mob"
-  console.log(size)
+  
+  const handleName = (e) => {
+     setName(e.target.value)
+  }
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value)
+ }
+
+ const handleNumber = (e) => {
+  setNumber(e.target.value)
+}
+
   const handleConfirm = () => {
     setConfirm(true)
     setInfo(false)
@@ -107,10 +124,47 @@ function App() {
   const handleMonth = () => {
     if(month === true){
       setMonth(false)
+      if (finalPlan.title !== undefined){
+        let newPrice = plans.filter((plan) => plan.id === finalPlan.title)[0].yearlyPrice
+        let newFinalPlan ={...finalPlan}
+        newFinalPlan.price = newPrice
+        setFinalPlan(newFinalPlan)
+      }
+      if (finalAddOns.length > 0) {
+        let newFinalAddOns = [...finalAddOns]
+        for (let i in addOnsPlan) {
+          console.log(addOnsPlan[i].title)
+          for (let j in newFinalAddOns) {
+            console.log(newFinalAddOns[j].price)
+            if (addOnsPlan[i].title === newFinalAddOns[j].title) {
+              newFinalAddOns[j].price = addOnsPlan[i].yearlyPrice
+            }
+          }
+        }
+        console.log(newFinalAddOns)
+        setFinalAddOns(newFinalAddOns)
+      }
     }else{
       setMonth(true)
+      if (finalPlan.title !== undefined){
+        let newPrice = plans.filter((plan) => plan.id === finalPlan.title)[0].monthlyPrice
+        let newFinalPlan ={...finalPlan}
+        newFinalPlan.price = newPrice
+        setFinalPlan(newFinalPlan)
+      }
+      if (finalAddOns.length > 0) {
+        let newFinalAddOns = [...finalAddOns]
+        for (let i in addOnsPlan) {
+          for (let j in newFinalAddOns) {
+            if (addOnsPlan[i].title === newFinalAddOns[j].title) {
+              newFinalAddOns[j].price = addOnsPlan[i].monthlyPrice
+            }
+          }
+        }
+        console.log(newFinalAddOns)
+        setFinalAddOns(newFinalAddOns)
+      }
     }
-    console.log(month)
   }
 
   const handleAll = (id) => {
@@ -124,17 +178,55 @@ function App() {
       setPlan(true)
       setAddOns(false)
       setSummary(false)
+      
     }else if (id === "choice-3" && addOns === false) {
       setInfo(false)
       setPlan(false)
       setAddOns(true)
       setSummary(false)
+      console.log(finalPlan.title)
+      if (finalPlan.title === undefined) {
+        setOnEmptyPlan(true)
+        setEmptyPlan("You can't procceed unless you choose a plan")
+        setInfo(false)
+        setPlan(true)
+        setAddOns(false)
+        setSummary(false)
+        setTimeout(() => {setEmptyPlan("")}, 1500)
+        
+      }else{
+        setOnEmptyPlan(false)
+        setInfo(false)
+        setPlan(false)
+        setAddOns(true)
+        setSummary(false)
+        setEmptyPlan("")
+      }
+      
     }else if ( id === "choice-4" && summary === false) {
       setInfo(false)
       setPlan(false)
       setAddOns(false)
       setSummary(true)
+      if (finalPlan.title === undefined) {
+        setOnEmptyPlan(true)
+        setEmptyPlan("You can't procceed unless you choose a plan")
+        setInfo(false)
+        setPlan(true)
+        setAddOns(false)
+        setSummary(false)
+        setTimeout(() => {setEmptyPlan("")}, 1500)
+        
+      }else{
+        setOnEmptyPlan(false)
+        setInfo(false)
+        setPlan(false)
+        setAddOns(false)
+        setSummary(true)
+        setEmptyPlan("")
     }
+  
+  }
   }
 
   const handleNext = () => {
@@ -148,6 +240,23 @@ function App() {
       setPlan(false)
       setAddOns(true)
       setSummary(false)
+      if (finalPlan.title === undefined) {
+        setOnEmptyPlan(true)
+        setEmptyPlan("You can't procceed unless you choose a plan")
+        setInfo(false)
+        setPlan(true)
+        setAddOns(false)
+        setSummary(false)
+        setTimeout(() => {setEmptyPlan("")}, 1500)
+        
+      }else{
+        setOnEmptyPlan(false)
+        setInfo(false)
+        setPlan(false)
+        setAddOns(true)
+        setSummary(false)
+        setEmptyPlan("")
+      }
     }else if (addOns === true && summary === false){
       setInfo(false)
       setPlan(false)
@@ -156,10 +265,31 @@ function App() {
     }
   }
 
+  const handleBack = () => {
+    if (summary === true && addOns === false){
+      setInfo(false)
+      setPlan(false)
+      setAddOns(true)
+      setSummary(false)
+    }else if (addOns === true && plan === false) {
+      setInfo(false)
+      setPlan(true)
+      setAddOns(false)
+      setSummary(false)
+    }
+    else if (plan === true && info === false){
+      setInfo(true)
+      setPlan(false)
+      setAddOns(false)
+      setSummary(false)
+    }
+  }
+
   return (
     <div className={size}>
-      <NavDesktop windowSize={windowSize} handleAll={handleAll} />
-      {info === true ? <Info windowSize={windowSize} handleNext={handleNext}/> : plan === true ? <Plan windowSize={windowSize} handleNext={handleNext} month={month} handleMonth={handleMonth} plans={plans} handlePlans={handlePlans}/> : addOns === true ? <AddOns windowSize={windowSize} handleNext={handleNext} month={month} addOnsPlan={addOnsPlan} handleAddOnsPlan={handleAddOnsPlan} /> : summary === true ? <Summary windowSize={windowSize} handleConfirm={handleConfirm} month={month} finalPlan={finalPlan} finalAddOns={finalAddOns} /> : confirm === true ? <Thanks img={img}/> : undefined}  
+      {onEmptyPlan === false ? undefined : <p id="empty">{emptyPlan}</p>}
+      <NavDesktop windowSize={windowSize} info={info} plan={plan} addOns={addOns} summary={summary} handleAll={handleAll} />
+      {info === true ? <Info name={name} handleName={handleName} email={email} handleEmail={handleEmail} number={number} handleNumber={handleNumber} windowSize={windowSize} handleNext={handleNext}/> : plan === true ? <Plan handleBack={handleBack} windowSize={windowSize} handleNext={handleNext} month={month} handleMonth={handleMonth} plans={plans} finalPlan={finalPlan} handlePlans={handlePlans}/> : addOns === true ? <AddOns finalAddOns={finalAddOns} handleBack={handleBack} windowSize={windowSize} handleNext={handleNext} month={month} addOnsPlan={addOnsPlan} handleAddOnsPlan={handleAddOnsPlan} /> : summary === true ? <Summary handleBack={handleBack} windowSize={windowSize} handleConfirm={handleConfirm} month={month} finalPlan={finalPlan} finalAddOns={finalAddOns} /> : confirm === true ? <Thanks img={img}/> : undefined}  
     </div>
   );
 }

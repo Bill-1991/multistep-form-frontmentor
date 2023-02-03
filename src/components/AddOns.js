@@ -1,6 +1,6 @@
 import "../App.css"
 
-const AddOns = ({month, addOnsPlan, handleAddOnsPlan, handleNext, windowSize}) => {
+const AddOns = ({month, addOnsPlan, handleAddOnsPlan, handleNext, windowSize, handleBack}) => {
 
     return(
       <div id="alladdon">
@@ -12,7 +12,7 @@ const AddOns = ({month, addOnsPlan, handleAddOnsPlan, handleNext, windowSize}) =
 
            <div id="alladdons">
                 <div id="outeronline">
-                <div className="online">
+                <div className="online" style={{backgroundColor: addOnsPlan[0].type === true ? "rgba(200, 200, 20, 0.9)" : undefined}}>
                     <button onClick={() => handleAddOnsPlan("online")} type="checkbox" style={{width: "20px", height: "20px", justifySelf: "center", backgroundColor: addOnsPlan[0].type === true ? "blue" : "inherit"}}></button>
                     <div style={{textAlign: "start"}}>
                       <h2 style={{fontSize: "12px"}}>Online Service</h2>
@@ -23,7 +23,7 @@ const AddOns = ({month, addOnsPlan, handleAddOnsPlan, handleNext, windowSize}) =
                 </div>
                 
                 <div id="outerstorage">
-                <div className="storage">
+                <div className="storage" style={{backgroundColor: addOnsPlan[1].type === true ? "rgba(200, 200, 20, 0.9)" : undefined}}>
                     <button onClick={() => handleAddOnsPlan("storage")} type="checkbox" style={{width: "20px", height: "20px", justifySelf: "center", backgroundColor: addOnsPlan[1].type === true ? "blue" : "inherit"}}></button>
                     <div style={{textAlign: "start"}}>
                       <h2 style={{fontSize: "12px"}}>Larger storage</h2>
@@ -35,7 +35,7 @@ const AddOns = ({month, addOnsPlan, handleAddOnsPlan, handleNext, windowSize}) =
                 </div>
                 
                 <div id="outercustomize">
-                <div className="customize">
+                <div className="customize" style={{backgroundColor: addOnsPlan[2].type === true ? "rgba(200, 200, 20, 0.9)" : undefined}}>
                     <button onClick={() => handleAddOnsPlan("customize")} type="checkbox" style={{width: "20px", height: "20px", justifySelf: "center", backgroundColor: addOnsPlan[2].type === true ? "blue" : "inherit"}}></button>
                     <div style={{textAlign: "start"}}>
                       <h2 style={{fontSize: "12px"}}>Customizable profile</h2>
@@ -48,8 +48,8 @@ const AddOns = ({month, addOnsPlan, handleAddOnsPlan, handleNext, windowSize}) =
             </div>
         </div>
         <div id={windowSize >= 577 ? "but" : "mobbut"}>
-        <button id="back" style={{borderRadius: "10%", backgroundColor: "inherit", color: 'black'}}>Go back</button>
-        <button id="next" onClick={handleNext} style={{borderRadius: "10%", backgroundColor: "darkblue", color: "white"}}>Next Step</button>
+        <button id="back" onClick={handleBack} style={{justifySelf: "start", borderRadius: "10%", backgroundColor: "inherit", color: 'black'}}>Go back</button>
+        <button id="next" onClick={handleNext} style={{justifySelf: "end", borderRadius: "10%", backgroundColor: "darkblue", color: "white"}}>Next Step</button>
        </div>
        </div>
     )

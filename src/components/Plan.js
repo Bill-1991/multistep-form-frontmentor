@@ -1,6 +1,6 @@
 import "../App.css"
 
-const Plan = ({month, handleMonth, plans, handlePlans, handleNext, windowSize, handleBack}) => {
+const Plan = ({month, handleMonth, plans, handlePlans, handleNext, windowSize, handleBack, finalPlan}) => {
 
     return(
         <div id="allplan">
@@ -13,8 +13,8 @@ const Plan = ({month, handleMonth, plans, handlePlans, handleNext, windowSize, h
 
            <div id="allplans">
            <div id={windowSize >= 577 ? "buttons" : "mobbuttons"}>
-            <button onClick={() => handlePlans("arcade")}>
-                <div id="arcade" className="arcade">
+            <button onClick={() => handlePlans("Arcade")} style={{backgroundColor: finalPlan.title === "Arcade" ? "rgba(130, 130, 130, 0.8)" : undefined}}>
+                <div id="Arcade" className="arcade">
                     <img src={plans[0].img} alt="Plan arcade"/>
                     <div style={{textAlign: "start"}}>
                     <h2 style={{fontSize: "13px"}}>Arcade</h2>
@@ -24,8 +24,8 @@ const Plan = ({month, handleMonth, plans, handlePlans, handleNext, windowSize, h
                 </div>
             </button>
 
-            <button onClick={() => handlePlans("advanced")}>
-                <div id="advanced" className="advanced">
+            <button onClick={() => handlePlans("Advanced")} style={{backgroundColor: finalPlan.title === "Advanced" ? "rgba(130, 130, 130, 0.8)" : undefined}}>
+                <div id="Advanced" className="advanced">
                     <img src={plans[1].img} alt="Plan advanced"/>
                     <div style={{textAlign: "start"}}>
                         <h2 style={{fontSize: "13px"}}>Advanced</h2>
@@ -35,8 +35,8 @@ const Plan = ({month, handleMonth, plans, handlePlans, handleNext, windowSize, h
                 </div>
             </button>
 
-            <button onClick={() => handlePlans("pro")}>
-                <div id="pro" className="pro">
+            <button onClick={() => handlePlans("Pro")} style={{backgroundColor: finalPlan.title === "Pro" ? "rgba(130, 130, 130, 0.8)" : undefined}}>
+                <div id="Pro" className="pro">
                     <img src={plans[2].img} alt="Plan pro"/>
                     <div id="protext" style={{textAlign: "start"}}>
                     <h2 style={{fontSize: "13px"}}>Pro</h2>
@@ -54,7 +54,7 @@ const Plan = ({month, handleMonth, plans, handlePlans, handleNext, windowSize, h
            </div>
         </div>
         <div id={windowSize >= 577 ? "but" : "mobbut"}>
-        <button id="back" style={{justifySelf: "start", borderRadius: "10%", backgroundColor: "inherit", color: 'black'}}>Go back</button>
+        <button id="back" onClick={handleBack} style={{justifySelf: "start", borderRadius: "10%", backgroundColor: "inherit", color: 'black'}}>Go back</button>
         <button id="next" onClick={handleNext} style={{justifySelf: "end", borderRadius: "10%", backgroundColor: "darkblue", color: "white"}}>Next Step</button>
        </div>
        </div>

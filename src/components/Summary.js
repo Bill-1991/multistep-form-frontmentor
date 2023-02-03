@@ -1,6 +1,6 @@
 import "../App.css"
 
-const Summary = ({month, finalPlan, finalAddOns, handleConfirm, windowSize}) => {
+const Summary = ({month, finalPlan, finalAddOns, handleConfirm, windowSize, handleBack}) => {
     let totalAddOnsPrice = 0
     for(let i in finalAddOns) {
         totalAddOnsPrice += finalAddOns[i].price
@@ -25,7 +25,7 @@ const Summary = ({month, finalPlan, finalAddOns, handleConfirm, windowSize}) => 
                 </div>
                 <div style={{backgroundColor: "black", height: "2px"}}></div>
                 <div id="finaladdons">
-                    {finalAddOns.map(addon => <div style={{display: "grid", gridTemplateColumns: "60% 40%"}}>
+                    {finalAddOns.map(addon => <div key={addon.title} style={{display: "grid", gridTemplateColumns: "60% 40%"}}>
                         <p style={{justifySelf: "start", display: "block", position: "relative", left: "5%"}}>{addon.title}</p>
                         <p style={{justifySelf: "end", position: "relative", right: "5%"}}>{`+$${addon.price}/${month === true ? "mo" : "yr"}`}</p>
                     </div>)}
@@ -37,7 +37,7 @@ const Summary = ({month, finalPlan, finalAddOns, handleConfirm, windowSize}) => 
             </div>
         </div>
         <div id={windowSize >= 577 ? "but" : "mobbut"}>
-        <button id="back" style={{justifySelf: "start", borderRadius: "10%", backgroundColor: "inherit", color: 'black'}}>Go back</button>
+        <button id="back" onClick={handleBack} style={{justifySelf: "start", borderRadius: "10%", backgroundColor: "inherit", color: 'black'}}>Go back</button>
         <button id="next" onClick={handleConfirm} style={{justifySelf: "end", borderRadius: "10%", backgroundColor: "darkblue", color: "white"}}>Confirm</button>
        </div>
        </div>

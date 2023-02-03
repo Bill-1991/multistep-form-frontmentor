@@ -1,6 +1,6 @@
 import "../App.css"
 
-const Info = ({handleNext, windowSize}) => {
+const Info = ({handleNext, windowSize, name, email, number, handleName, handleEmail, handleNumber}) => {
 
     return(
         <div id="allinfo"> 
@@ -12,15 +12,19 @@ const Info = ({handleNext, windowSize}) => {
                 <form className="form">
                     <div style={{display: "grid"}}>
                     <label><strong>Name</strong></label>
-                    <input type="text" placeholder="e.g Stephen King"></input>
+                    <input onChange={handleName} value={name} type="text" placeholder="e.g Stephen King" required></input>
+                    {name === "" ? <p style={{color: "red", fontSize: "10px"}}>This is a required field</p> : undefined}
                     </div>
+                    
                     <div style={{display: "grid"}}>
                     <label><strong>E-mail</strong></label>
-                    <input type="email" placeholder="e.g stephenking@lorem.com"></input>
+                    <input onChange={handleEmail} value={email} type="email" placeholder="e.g stephenking@lorem.com" required></input>
+                    {email === "" ? <p style={{color: "red", fontSize: "10px"}}>This is a required field</p> : undefined}
                     </div>
                     <div style={{display: "grid"}}>
                     <label><strong>Phone Number</strong></label>
-                    <input type="number" placeholder="e.g +1234567890"></input>
+                    <input onChange={handleNumber} value={number} type="number" placeholder="e.g +1234567890" required="required"></input>
+                    {number === "" ? <p style={{color: "red", fontSize: "10px"}}>This is a required field</p> : undefined}
                     </div>
                 </form>
         </div>
