@@ -16,20 +16,26 @@ const Summary = ({month, finalPlan, finalAddOns, handleConfirm, windowSize, hand
            </div>
            
            <div id="lastplan" style={{borderRadius: "10%", backgroundColor: "lightgray"}}>
+                <div style={{display: "grid", gridAutoRows: "98% 2%"}}>
                 <div id="finalplan">
                   <div >
                     <h2 style={{position: "relative", left: "5%", fontSize: "15px"}}>{`${finalPlan.title} (${month === true ? "monthly" : "yearly"})`}</h2>
                     <button onClick={handleChangePlan} style={{border: "none", backgroundColor: "rgba(0,0,0,0)"}}><p style={{position: "relative", left: "5%",textDecoration: "underline", color: "gray", fontSize: "10px"}}>change</p></button>
+                    
                   </div>
                   <p style={{position: "relative", right: "5%", color: "black", justifySelf:"end", alignSelf: 'center'}}>{`${finalPlan.price}$/${month === true ? "mo" : "yr"}`}</p>
                 </div>
-                <div style={{backgroundColor: "black", height: "2px"}}></div>
+                <div style={{display: "block", backgroundColor: "black", height: '2px', width: '100%'}}></div>
+                </div>
+                {finalAddOns.length > 0 ?
                 <div id="finaladdons">
-                    {finalAddOns.map(addon => <div key={addon.title} style={{display: "grid", gridTemplateColumns: "60% 40%"}}>
+                 {finalAddOns.map(addon => <div key={addon.title} style={{display: "grid", gridTemplateColumns: "60% 40%"}}>
                         <p style={{justifySelf: "start", display: "block", position: "relative", left: "5%"}}>{addon.title}</p>
                         <p style={{justifySelf: "end", position: "relative", right: "5%"}}>{`+$${addon.price}/${month === true ? "mo" : "yr"}`}</p>
                     </div>)}
-                </div>
+                </div> : 
+                 <p style={{textAlign: "center"}}>No Addons on</p>
+                }
             <div id="total">
                 <p style={{position: 'relative', left: '5%'}}>{`Total (${month === true ? "per month" : "per year"})`}</p>
                 <strong style={{justifySelf: "end", position: 'relative', right: '5%', }}><p style={{fontSize: "16px", color: "blue"}}>{`$${total}/${month === true ? "mo" : "yr"}`}</p></strong>

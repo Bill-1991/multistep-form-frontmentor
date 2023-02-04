@@ -217,7 +217,7 @@
 #summary #lastplan{
   height: 80%;
   display: grid;
-  grid-template-rows: 29% 1% 50% 20%;
+  grid-template-rows: 29% 50% 21%;
   align-items: center;
 }
 
@@ -368,9 +368,18 @@
     grid-template-rows: 30% 20%;
   }
 
-  #summary{
-    grid-template-rows: 20% 80%;
+  #summary #top{
+    grid-template-rows: 60% 40%;
   }
+
+  #summary{
+    grid-template-rows: 20% 70%;
+    gap: 10%;
+    min-height: 80%;
+    height: fit-content;
+    max-height: 100%
+  }
+
 
   #plan #allplans #mobbuttons{
     width: 100%;
@@ -390,6 +399,7 @@
     display: grid;
     height: 100%;
     grid-template-columns: 30% 70%;
+    
     align-items: center;
     justify-content: start;
   }
@@ -397,9 +407,9 @@
   
 
   #summary #lastplan{
-    height: fit-content;
+    height: 100%;
     width: 90%;
-    grid-template-rows: 29% 1% 50% 20%;
+    grid-template-rows: 30% 50% 20%;
     justify-self: center;
   }
 

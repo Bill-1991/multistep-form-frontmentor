@@ -117,12 +117,15 @@ const handleChangePlan = () => {
       if(arr[i].type === true){
         let finalAddOn = {title: arr[i].title, price: month === true ? arr[i].monthlyPrice : arr[i].yearlyPrice}
         if(newArr.indexOf(finalAddOn) === -1){
+          console.log(newArr)
           newArr = [...newArr, finalAddOn]
           console.log(newArr)
-          setFinalAddOns([...newArr])
+          console.log(arr[i].type)
          }
       }
     }
+    console.log(newArr)
+    setFinalAddOns([...newArr])
     
   }
 
